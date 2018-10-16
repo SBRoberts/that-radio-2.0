@@ -18,7 +18,6 @@ export const fetchStationList = (queryTerm) => dispatch =>{
         videoEmbeddable: 'true',
         maxResults: '5',
         key: apiKey,
-        autoplay: "1",
       }
     })
     .then(({ data }) => {

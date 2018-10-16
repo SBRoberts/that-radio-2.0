@@ -20,18 +20,26 @@ class SearchForm extends Component {
     
   }
   changeHandler = (e) => {
+    const label = e.target.parentNode.getElementsByTagName('label')
     const queryTerm = e.target.value
     this.props.fetchPrimaryQuery(queryTerm)
+
+    // if the query is not empty, float the label
+    if (queryTerm){
+      label[0].classList.add('float')
+    } else{
+      label[0].classList.remove('float')
+    }
   }
   render() {
     return (
-      <form onSubmit={this.submitHandler}>
+      <form onSubmit={this.submitHandler} className="searchForm">
+        <input type="search" onChange={this.changeHandler}/>
         <label htmlFor="primaryQuery">
-          <h3>What are your vibes?</h3>
+          <h3>Search Vibes</h3>
         </label>
-        <input type="text" onChange={this.changeHandler}/>
         <button type="submit">
-          Search
+          <i className="fas fa-search"></i>
         </button>
       </form>
     )

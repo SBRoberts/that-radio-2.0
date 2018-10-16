@@ -7,35 +7,31 @@ import { fetchGifList } from '../actions/fetchGifList';
 import { fetchActiveGif } from '../actions/fetchActiveGif';
 
 class GifPanel extends Component {
-// create action to manage gif-related things
-// create a reducer to dispatch gid actions
-// import gif action in this file
-// add gif info that I want in my props to map state func
-// add action to export default connect
-  componentDidMount(){
-    // console.log(this.props);
-    
-  }
   clickHandler = (e) => {
     const link = e.currentTarget.dataset.link
-    // console.log(link);
     this.props.fetchActiveGif(link)
-
-    // fetchActiveGif
-    
   }
   render() {
     return (
-      <div>
-        <ul>
+      <section id="gifPanel" className="gifList">
+        <ul className="gifList__container">
         {
-          this.props.gifList.items ?
-          this.props.gifList.items.gifList.map((gif) => {
+          this.props.gifList.gifList.gifList ?
+          this.props.gifList.gifList.gifList.map((gif) => {
             return(
-              <li data-link={gif.images.original_mp4.mp4} onClick={this.clickHandler} key={gif.id}>
-                <video aria-labelledby={gif.title} autoPlay loop>
-                  <source src={gif.images.downsized_small.mp4} type="video/mp4"/>
-                  Your browser does not support HTML5 video (╥﹏╥).
+              <li
+              className="gifList__item"
+              data-link={gif.images.original_mp4.mp4}
+              onClick={this.clickHandler}
+              key={gif.id}>
+                <video
+                aria-labelledby={gif.title}
+                src={gif.images.downsized_small.mp4}
+                type="video/mp4"
+                autoPlay
+                muted
+                loop>
+                Your browser does not support HTML5 video (╥﹏╥).
                 </video>
               </li>
             )
@@ -43,7 +39,7 @@ class GifPanel extends Component {
           : null
         }
         </ul>
-      </div>
+      </section>
     )
   }
 }

@@ -19,36 +19,31 @@ class StationList extends Component {
   }
   render() {
     return (
-      <div>
+      <ul className="stationList">
         {
           this.props.stationList ?
-            <ul className="stationList">
-              {
-                this.props.stationList.stationList.map((station) => {
-                  // console.log(station);
-                  const backgroundImage = {
-                    backgroundImage: `url("${station.snippet.thumbnails.high.url}")`,
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover'
-                  }
-                  
-                  return(
-                    <li
-                    data-video-id={station.id.videoId}
-                    key={station.id.videoId}
-                    onClick={this.clickHandler}
-                    className="stationList__station"
-                    style={backgroundImage} >
-                      <h4>{station.snippet.channelTitle}</h4>
-                    </li>
-                  )
-                  
-                })
+            this.props.stationList.stationList.map((station) => {
+              // console.log(station);
+              const backgroundImage = {
+                backgroundImage: `url("${station.snippet.thumbnails.high.url}")`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover'
               }
-            </ul>
+              
+              return(
+                <li
+                data-video-id={station.id.videoId}
+                key={station.id.videoId}
+                onClick={this.clickHandler}
+                className="stationList__station">
+                  <h4>{station.snippet.channelTitle}</h4>
+                </li>
+              )
+              
+            })
           : null
         }
-      </div>
+      </ul>
     )
   }
 }
