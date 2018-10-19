@@ -2,6 +2,7 @@
   "name": "that-radio-2.0",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://spen.io/thatradio",
   "dependencies": {
     "axios": "^0.18.0",
     "googleapis": "^34.0.0",

@@ -23,18 +23,12 @@ class StationList extends Component {
         {
           this.props.stationList ?
             this.props.stationList.stationList.map((station) => {
-              // console.log(station);
-              const backgroundImage = {
-                backgroundImage: `url("${station.snippet.thumbnails.high.url}")`,
-                backgroundPosition: 'center',
-                backgroundSize: 'cover'
-              }
-              
               return(
                 <li
                 data-video-id={station.id.videoId}
                 key={station.id.videoId}
                 onClick={this.clickHandler}
+                onTouchStart={this.clickHandler}
                 className="stationList__station">
                   <h4>{station.snippet.channelTitle}</h4>
                 </li>
@@ -49,7 +43,7 @@ class StationList extends Component {
 }
 
 // delay prop type set to allow stationList to return with a value when fetchStationList is called
-setInterval(() => {
+setTimeout(() => {
   StationList.propTypes = {
     // fetchStationList: PropTypes.func.isRequired,
     fetchActiveStation: PropTypes.func.isRequired,

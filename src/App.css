@@ -338,13 +338,21 @@ main {
     border-radius: 2rem;
     padding: .5rem;
     background: #063BD4;
-    cursor: url("./assets/pointer-hand.svg"), auto; }
+    cursor: url("./assets/pointer-hand.svg"), auto;
+    border: 3px solid transparent;
+    transition: border .3s, background .3s; }
     .stationList__station h4 {
       color: white;
       margin: 0;
       border-radius: 2rem;
       font-size: 1rem;
-      padding: .5rem; }
+      padding: .4rem .5rem;
+      transition: color .4s; }
+    .stationList__station:hover {
+      background: white;
+      border: 3px solid #063BD4; }
+      .stationList__station:hover h4 {
+        color: #063BD4; }
 
 .activeStation {
   position: absolute;
@@ -471,6 +479,8 @@ main {
       width: 48%; }
     #gifPanel .show {
       transform: translate(0); }
+  .stationList__station {
+    padding: 1rem .5rem; }
   .activeStation {
     top: 85%; }
   .searchForm input, .searchForm button {

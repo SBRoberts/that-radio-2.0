@@ -256,13 +256,23 @@ main{
     padding: .5rem;
     background: $highlight;
     cursor: $hand;
+    border: 3px solid transparent;
+    transition: border .3s, background .3s;
     h4{
       color: white;
       // background: rgba(255, 255, 255, .7);
       margin: 0;
       border-radius: 2rem;
       font-size: 1rem;
-      padding: .5rem;
+      padding: .4rem .5rem;
+      transition: color .4s;
+    }
+    &:hover{
+      background: white;
+      border: 3px solid $highlight;
+      h4{
+        color: $highlight;
+      }
     }
   }
 }

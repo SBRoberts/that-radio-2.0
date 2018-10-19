@@ -11,13 +11,6 @@ class SearchForm extends Component {
     e.preventDefault()
     this.props.fetchStationList(this.props.queryTerm.queryTerm)
     this.props.fetchGifList(this.props.queryTerm.queryTerm)
-    console.log(this.props);
-    
-    // console.log(this.props.queryTerm.queryTerm)
-    // setInterval(() => {
-    //   console.log(this.props);
-    // }, 500)
-    
   }
   changeHandler = (e) => {
     const label = e.target.parentNode.getElementsByTagName('label')

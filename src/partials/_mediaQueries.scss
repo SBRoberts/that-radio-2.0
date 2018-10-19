@@ -77,6 +77,11 @@
       transform: translate(0)
     }
   }
+  .stationList{
+    &__station{
+      padding: 1rem .5rem;
+    }
+  }
   .activeStation{
     top: 85%;
   }
@@ -88,8 +93,6 @@
     }
     input{
       width: 90%;
-    }
-    button{
     }
     label{
       font-size: 1rem;

@@ -11,6 +11,8 @@ class MainDisplay extends Component {
   }
   componentDidMount(){
     // this.toggleAutoPlay()
+    console.log(this.props);
+    
   }
   playPause = (e) => {
     // if the player state is 1 - video is playing, run pause function on key press
@@ -31,7 +33,9 @@ class MainDisplay extends Component {
     document.getElementById('mainDisplay').addEventListener('click', () => {
       this.playPause(e)
     })
-    // this.toggleAutoPlay()
+    
+    // unmute video, to ensure consistency
+    e.target.unMute()
   }
   getActiveStationDetails = (activeStation) => {
     const stationList = this.props.stationList.stationList
@@ -73,10 +77,10 @@ class MainDisplay extends Component {
             onReady={this.changeHandler}
             opts={
               {
-              height: '390',
+                height: '390',
                 width: '640',
                 playerVars: {
-                  autoplay: this.state.autoPlay
+                  autoplay: 1
                 }
               }
             }
