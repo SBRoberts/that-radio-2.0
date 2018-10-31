@@ -3,17 +3,6 @@ import { connect } from 'react-redux';
 import YouTube from 'react-youtube';
 
 class MainDisplay extends Component {
-  constructor(){
-    super();
-    this.state = {
-      autoPlay: 1,
-    }
-  }
-  componentDidMount(){
-    // this.toggleAutoPlay()
-    console.log(this.props);
-    
-  }
   playPause = (e) => {
     // if the player state is 1 - video is playing, run pause function on key press
     if (e.target.j.playerState === 1) {
@@ -48,33 +37,15 @@ class MainDisplay extends Component {
     }
     return details
   }
-
-  toggleAutoPlay = () => {
-    window.addEventListener('resize', (e) => {
-      const width = e.currentTarget.innerWidth
-      const height = e.currentTarget.innerHeight
-      if (width <= 420 || height <= 420) {
-        this.setState({
-          autoPlay: 0,
-        })
-      } else{
-        this.setState({
-          autoPlay: 1,
-        })
-      }
-    })
-  }
   render() {
-    const activeStation = this.props.activeStation.item
-    const stationList = this.props.stationList.items;
-    const activeGif = this.props.activeGif.item
+    const {activeStation, activeGif} = this.props
+    
     return (
-      
       <section id="mainDisplay">
       {
-        activeStation ?
+        activeStation.item ?
           <YouTube
-            videoId={activeStation}
+            videoId={activeStation.item}
             id="videoFrame"
             className="videoFrame visuallyhidden"
             onReady={this.changeHandler}
@@ -91,17 +62,17 @@ class MainDisplay extends Component {
         : null
       }
       {
-        activeStation && stationList ?
-          <h3 className="activeStation">{this.getActiveStationDetails(activeStation)["channelTitle"]}</h3>
+        activeStation.item ?
+          <h3 className="activeStation">{this.getActiveStationDetails(activeStation.item)["channelTitle"]}</h3>
         : null
       }
       {
-        activeGif ? 
+        activeGif.item ? 
           <video
           className="gifOverlay"
           id="gifOverlay"
           aria-labelledby="Active Gif Background"
-          src={activeGif}
+          src={activeGif.item}
           type="video/mp4"
           autoPlay
           loop>

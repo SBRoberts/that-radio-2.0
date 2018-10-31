@@ -7,10 +7,6 @@ import { fetchGifList } from '../actions/fetchGifList';
 import { fetchActiveGif } from '../actions/fetchActiveGif';
 
 class GifPanel extends Component {
-  constructor(props){
-    super(props)
-    console.log(this.props);
-  }
   clickHandler = (e) => {
     const link = e.currentTarget.dataset.link
     this.props.fetchActiveGif(link)
@@ -19,7 +15,7 @@ class GifPanel extends Component {
     const {displayGifPanel} = this.props.controlPanel
     const {gifList} = this.props
     return (
-      <section id="gifPanel" className={`gifList ${displayGifPanel ? 'show' : null}`}>
+      <section className={`gifPanel gifList ${displayGifPanel ? 'show' : null}`}>
         <ul className="gifList__container">
         {
           gifList.items.length ?
@@ -59,9 +55,9 @@ GifPanel.propTypes = {
 // setInterval(() => {
 // }, 50)
 const mapStateToProps = state => ({
-  queryTerm: state.primaryQuery.queryTerm,
+  queryTerm: state.primaryQuery,
   gifList: state.gifList,
-  activeGif: state.activeGif.activeGif,
+  activeGif: state.activeGif,
   controlPanel: state.controlPanel,
 })
 export default connect(mapStateToProps, { fetchPrimaryQuery, fetchGifList, fetchActiveGif})(GifPanel);

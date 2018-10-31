@@ -61,7 +61,10 @@
       }
     }
   }
-  #gifPanel{
+  .hamburgerInput:checked + .hamburger {
+    margin: 0;
+  }
+  .gifPanel{
     transform: translate(0,-100%);
     height: 90%;
     .gifList{

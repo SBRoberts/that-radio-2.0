@@ -74,7 +74,7 @@ main{
   z-index: 100;
 }
 
-#gifPanel{
+.gifPanel{
   z-index: 800;
   transform: translateX(-50rem);
   transition: transform .5s ease-in;
@@ -110,7 +110,7 @@ main{
   }
 }
 
-#controlPanel{
+.controlPanelMain{
   display: flex;
   z-index: 999;
   transform: translateX(-13rem);

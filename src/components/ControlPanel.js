@@ -17,38 +17,37 @@ class ControlPanel extends Component {
     }
   }
   changeStation = (val) => {
-    const stationList = this.props.stationList.stationList
+    const {stationList} = this.props
     let i = this.getCurrentStationIndex() + val;
     // weird behavior where i at the 0 index === -1 on init - adding 1 changes it to 0
     // this conditional adds 1 to the index to ensure proper behaviour at the 0 index
     if (i === 0 && val === 1) {
       i++
     }
-    if (i < stationList.length && i >= 0) {
-      const newStation = stationList[i].id.videoId
-      console.log(stationList[i].snippet.channelTitle);
+    if (i < stationList.items.length && i >= 0) {
+      const newStation = stationList.items[i].id.videoId
+      console.log(stationList.items[i].snippet.channelTitle);
       
       this.props.fetchActiveStation(newStation)
     }
   }
   getCurrentStationIndex = () => {
     // take active video ID from props, find the matching video ID from the station list and return the index of the current station
-    const stationList = this.props.stationList.stationList
-    const activeStation = this.props.activeStation.activeStation
-    let findIndex = stationList.filter((station) => {
+    const {stationList, activeStation} = this.props
+    let findIndex = stationList.items.filter((station) => {
       let i;
-      if (station.id.videoId === activeStation) {
-        i = stationList.indexOf(station)
+      if (station.id.videoId === activeStation.item) {
+        i = stationList.items.indexOf(station)
       }
       return i
     })[0]
-    findIndex = stationList.indexOf(findIndex)
+    findIndex = stationList.items.indexOf(findIndex)
     return findIndex
   }
 
   toggleShuffle = () => {
-    if(this.props.stationList){
-      let stationList = this.props.stationList.stationList
+    if(this.props.stationList.items){
+      let stationList = this.props.stationList.items
       // if shuffle is on, randomize the stationList
       stationList.sort(function () { return 0.5 - Math.random() });
     }
@@ -73,7 +72,7 @@ class ControlPanel extends Component {
   render() {
     const {displayControlPanel} = this.props.controlPanel
     return (
-      <header id="controlPanel" className={displayControlPanel ? 'show' : null}>
+      <header className={`controlPanelMain ${displayControlPanel ? 'show' : null}`}>
         <div className="controlPanel controlPanel__body">
           <SearchForm />
           <StationList />
@@ -115,7 +114,7 @@ class ControlPanel extends Component {
 }
 const mapStateToProps = state => ({
   activeStation: state.activeStation,
-  stationList: state.stationList.items,
+  stationList: state.stationList,
   controlPanel: state.controlPanel,
 })
 export default connect(mapStateToProps, { fetchStationList, fetchActiveStation, displayGifPanel, displayControlPanel })(ControlPanel);

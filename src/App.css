@@ -204,11 +204,11 @@ main {
   left: 0;
   z-index: 100; }
 
-#gifPanel {
+.gifPanel {
   z-index: 800;
   transform: translateX(-50rem);
   transition: transform .5s ease-in; }
-  #gifPanel.show {
+  .gifPanel.show {
     transform: translateX(0%);
     transition: transform .5s ease-out; }
 
@@ -229,21 +229,21 @@ main {
     .gifList__item video {
       width: 100%; }
 
-#controlPanel {
+.controlPanelMain {
   display: flex;
   z-index: 999;
   transform: translateX(-13rem);
   transition: transform .3s ease-in;
   background: white; }
-  #controlPanel ul {
+  .controlPanelMain ul {
     margin: 0; }
-  #controlPanel.show {
+  .controlPanelMain.show {
     transform: translateX(0%);
     transition: transform .3s ease-out; }
-  #controlPanel .controlPanel {
+  .controlPanelMain .controlPanel {
     display: flex;
     flex-wrap: wrap; }
-    #controlPanel .controlPanel__body {
+    .controlPanelMain .controlPanel__body {
       width: 13rem;
       padding: 1rem .5rem;
       display: flex;
@@ -251,7 +251,7 @@ main {
       justify-content: center;
       overflow-y: scroll;
       transition: width .3s; }
-    #controlPanel .controlPanel__controls {
+    .controlPanelMain .controlPanel__controls {
       height: 100%;
       width: 3.5rem;
       display: flex;
@@ -260,21 +260,21 @@ main {
       align-self: center;
       padding: 0 .5rem;
       transition: width .3s; }
-      #controlPanel .controlPanel__controls ul {
+      .controlPanelMain .controlPanel__controls ul {
         height: 100%; }
-      #controlPanel .controlPanel__controls--item {
+      .controlPanelMain .controlPanel__controls--item {
         display: flex;
         justify-content: center;
         font-size: 1.2rem;
         transition: transform .2s;
         cursor: url("./assets/pointer-hand.svg"), auto; }
-        #controlPanel .controlPanel__controls--item svg {
+        .controlPanelMain .controlPanel__controls--item svg {
           cursor: url("./assets/pointer-hand.svg"), auto; }
-        #controlPanel .controlPanel__controls--item path {
+        .controlPanelMain .controlPanel__controls--item path {
           fill: #063BD4; }
-        #controlPanel .controlPanel__controls--item .hamburger .bar {
+        .controlPanelMain .controlPanel__controls--item .hamburger .bar {
           background-color: #063BD4; }
-        #controlPanel .controlPanel__controls--item:not(.hamburgerContainer):hover {
+        .controlPanelMain .controlPanel__controls--item:not(.hamburgerContainer):hover {
           transform: scale(1.2); }
 
 .searchForm {
@@ -469,15 +469,17 @@ main {
           order: 4; }
         #controlPanel .controlPanel__controls--item:nth-of-type(5) {
           order: 5; }
-  #gifPanel {
+  .hamburgerInput:checked + .hamburger {
+    margin: 0; }
+  .gifPanel {
     transform: translate(0, -100%);
     height: 90%; }
-    #gifPanel .gifList__container {
+    .gifPanel .gifList__container {
       height: 90%;
       justify-content: space-between; }
-    #gifPanel .gifList__item {
+    .gifPanel .gifList__item {
       width: 48%; }
-    #gifPanel .show {
+    .gifPanel .show {
       transform: translate(0); }
   .stationList__station {
     padding: 1rem .5rem; }
