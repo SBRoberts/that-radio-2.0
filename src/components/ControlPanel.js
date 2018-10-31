@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchStationList } from '../actions/stationListActions';
 import { fetchActiveStation } from '../actions/fetchActiveStation';
+import { displayGifPanel, displayControlPanel} from '../actions/controlPanelActions';
 
 // Components
 import StationList from './StationList';
@@ -12,6 +13,7 @@ class ControlPanel extends Component {
     super(props)
     this.state = {
       shuffle: false,
+      viewGifPanel: false,
     }
   }
   changeStation = (val) => {
@@ -53,26 +55,25 @@ class ControlPanel extends Component {
   }
 
   displayGifPanel = (e) => {
-    const gifPanel = document.getElementById('gifPanel')
     const checked = e.target.checked
     if(checked){
-      gifPanel.classList.add('show')
+      this.props.displayGifPanel(true)
     } else {
-      gifPanel.classList.remove('show')
+      this.props.displayGifPanel(false)
     }
   }
   displayControlPanelBody = (e) => {
-    const controlPanel = document.getElementById('controlPanel')
     const checked = e.target.checked
     if (checked) {
-      controlPanel.classList.add('show')
+      this.props.displayControlPanel(true)
     } else {
-      controlPanel.classList.remove('show')
+      this.props.displayControlPanel(false)
     }
   }
   render() {
+    const {displayControlPanel} = this.props.controlPanel
     return (
-      <header id="controlPanel">
+      <header id="controlPanel" className={displayControlPanel ? 'show' : null}>
         <div className="controlPanel controlPanel__body">
           <SearchForm />
           <StationList />
@@ -113,8 +114,9 @@ class ControlPanel extends Component {
   }
 }
 const mapStateToProps = state => ({
-  activeStation: state.activeStation.activeStation,
+  activeStation: state.activeStation,
   stationList: state.stationList.items,
+  controlPanel: state.controlPanel,
 })
-export default connect(mapStateToProps, { fetchStationList, fetchActiveStation })(ControlPanel);
+export default connect(mapStateToProps, { fetchStationList, fetchActiveStation, displayGifPanel, displayControlPanel })(ControlPanel);
 // export default ControlPanel;

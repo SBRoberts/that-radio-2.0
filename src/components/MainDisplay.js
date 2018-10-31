@@ -38,7 +38,7 @@ class MainDisplay extends Component {
     e.target.unMute()
   }
   getActiveStationDetails = (activeStation) => {
-    const stationList = this.props.stationList.stationList
+    const stationList = this.props.stationList.items
     const stationDetails = stationList.filter((station) => station.id.videoId === activeStation)
     const pageTitle = document.getElementById('pageTitle')
     let details = {};
@@ -65,13 +65,16 @@ class MainDisplay extends Component {
     })
   }
   render() {
+    const activeStation = this.props.activeStation.item
+    const stationList = this.props.stationList.items;
+    const activeGif = this.props.activeGif.item
     return (
       
       <section id="mainDisplay">
       {
-        this.props.activeStation.activeStation ?
+        activeStation ?
           <YouTube
-            videoId={this.props.activeStation.activeStation}
+            videoId={activeStation}
             id="videoFrame"
             className="videoFrame visuallyhidden"
             onReady={this.changeHandler}
@@ -88,17 +91,17 @@ class MainDisplay extends Component {
         : null
       }
       {
-        this.props.activeStation.activeStation && this.props.stationList.stationList ?
-          <h3 className="activeStation">{this.getActiveStationDetails(this.props.activeStation.activeStation)["channelTitle"]}</h3>
+        activeStation && stationList ?
+          <h3 className="activeStation">{this.getActiveStationDetails(activeStation)["channelTitle"]}</h3>
         : null
       }
       {
-        this.props.activeGif.activeGif ? 
+        activeGif ? 
           <video
           className="gifOverlay"
           id="gifOverlay"
           aria-labelledby="Active Gif Background"
-          src={this.props.activeGif.activeGif}
+          src={activeGif}
           type="video/mp4"
           autoPlay
           loop>
@@ -112,8 +115,8 @@ class MainDisplay extends Component {
   }
 }
 const mapStateToProps = state => ({
-  activeStation: state.activeStation.activeStation,
-  stationList: state.stationList.items,
-  activeGif: state.activeGif.activeGif
+  activeStation: state.activeStation,
+  stationList: state.stationList,
+  activeGif: state.activeGif
 })
 export default connect(mapStateToProps)(MainDisplay);

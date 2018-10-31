@@ -1,23 +1,29 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { fetchStationList } from '../actions/stationListActions';
+
 import { fetchPrimaryQuery } from '../actions/fetchPrimaryQuery';
 import { fetchGifList } from '../actions/fetchGifList';
 import { fetchActiveGif } from '../actions/fetchActiveGif';
 
 class GifPanel extends Component {
+  constructor(props){
+    super(props)
+    console.log(this.props);
+  }
   clickHandler = (e) => {
     const link = e.currentTarget.dataset.link
     this.props.fetchActiveGif(link)
   }
   render() {
+    const {displayGifPanel} = this.props.controlPanel
+    const {gifList} = this.props
     return (
-      <section id="gifPanel" className="gifList">
+      <section id="gifPanel" className={`gifList ${displayGifPanel ? 'show' : null}`}>
         <ul className="gifList__container">
         {
-          this.props.gifList.gifList.gifList ?
-          this.props.gifList.gifList.gifList.map((gif) => {
+          gifList.items.length ?
+          gifList.items.map((gif) => {
             return(
               <li
               className="gifList__item"
@@ -56,5 +62,6 @@ const mapStateToProps = state => ({
   queryTerm: state.primaryQuery.queryTerm,
   gifList: state.gifList,
   activeGif: state.activeGif.activeGif,
+  controlPanel: state.controlPanel,
 })
-export default connect(mapStateToProps, { fetchPrimaryQuery, fetchGifList, fetchActiveGif })(GifPanel);
+export default connect(mapStateToProps, { fetchPrimaryQuery, fetchGifList, fetchActiveGif})(GifPanel);

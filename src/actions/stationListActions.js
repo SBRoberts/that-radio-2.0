@@ -24,9 +24,7 @@ export const fetchStationList = (queryTerm) => dispatch =>{
       const stationList = data.items || 'undefined'
       dispatch({
         type: FETCH_STATIONLIST,
-        payload: {
-          stationList,
-        }
+        payload: stationList
       })
       return stationList
     })

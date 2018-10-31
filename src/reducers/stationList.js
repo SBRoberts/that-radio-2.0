@@ -1,7 +1,7 @@
 import {FETCH_STATIONLIST } from '../actions/types';
 
 const initialState = {
-  stationList: [],
+  items:[]
 }
 export default function(state = initialState, action){
   

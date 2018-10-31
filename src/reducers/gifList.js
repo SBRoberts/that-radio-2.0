@@ -1,7 +1,7 @@
 import { FETCH_GIFLIST } from '../actions/types';
 
 const initialState = {
-  gifList: [],
+  items: []
 }
 export default function (state = initialState, action) {
 
@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
     case FETCH_GIFLIST:
       return {
         ...state,
-        gifList: action.payload
+        items: action.payload
       }
     default:
       return state;

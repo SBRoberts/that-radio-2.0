@@ -1,7 +1,7 @@
 import { ACTIVE_STATION } from '../actions/types';
 
 const initialState = {
-  activeStation: {},
+  item: '',
 }
 export default function (state = initialState, action) {
 
@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
     case ACTIVE_STATION:
       return {
         ...state,
-        activeStation: action.payload
+        item: action.payload
       }
     default:
       return state;

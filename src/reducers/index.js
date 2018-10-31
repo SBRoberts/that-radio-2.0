@@ -4,6 +4,7 @@ import activeStation from './activeStation';
 import primaryQuery from './primaryQuery';
 import gifList from './gifList';
 import activeGif from './activeGif';
+import controlPanel from './controlPanel';
 
 export default combineReducers({
   stationList,
@@ -11,4 +12,5 @@ export default combineReducers({
   primaryQuery,
   gifList,
   activeGif,
+  controlPanel,
 });

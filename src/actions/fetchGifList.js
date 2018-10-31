@@ -20,9 +20,7 @@ export const fetchGifList = (queryTerm) => dispatch => {
       const gifList = data.data
       dispatch({
         type: FETCH_GIFLIST,
-        payload: {
-          gifList,
-        }
+        payload: gifList
       })
       return gifList
     })

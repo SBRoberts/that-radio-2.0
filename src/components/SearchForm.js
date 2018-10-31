@@ -7,28 +7,39 @@ import { fetchStationList } from '../actions/stationListActions';
 import { fetchGifList } from '../actions/fetchGifList';
 
 class SearchForm extends Component {
+  constructor(){
+    super()
+    this.state = {
+      isLabelFloat: false,
+    }
+  }
   submitHandler = (e) => {
     e.preventDefault()
-    this.props.fetchStationList(this.props.queryTerm.queryTerm)
-    this.props.fetchGifList(this.props.queryTerm.queryTerm)
+    const { queryTerm } = this.props.primaryQuery
+    this.props.fetchStationList(queryTerm)
+    this.props.fetchGifList(queryTerm)
   }
   changeHandler = (e) => {
-    const label = e.target.parentNode.getElementsByTagName('label')
     const queryTerm = e.target.value
     this.props.fetchPrimaryQuery(queryTerm)
 
     // if the query is not empty, float the label
-    if (queryTerm){
-      label[0].classList.add('float')
+    if (queryTerm.length){
+      this.setState({
+        isLabelFloat: true
+      })
     } else{
-      label[0].classList.remove('float')
+      this.setState({
+        isLabelFloat: false
+      })
     }
   }
   render() {
+    const {isLabelFloat} = this.state
     return (
       <form onSubmit={this.submitHandler} className="searchForm">
         <input type="search" onChange={this.changeHandler}/>
-        <label htmlFor="primaryQuery">
+        <label htmlFor="primaryQuery" className={isLabelFloat ? "float" : ""}>
           <h3>Search Vibes</h3>
         </label>
         <button type="submit">
@@ -39,19 +50,19 @@ class SearchForm extends Component {
   }
 }
 
-setInterval(() => {
-  SearchForm.propTypes = {
-    fetchPrimaryQuery: PropTypes.func.isRequired,
-    fetchStationList: PropTypes.func.isRequired,
-    fetchGifList: PropTypes.func.isRequired,
-    stationList: PropTypes.object,
-    gifList: PropTypes.object,
-    primaryQuery: PropTypes.object,
-  }
-}, 50)
+SearchForm.propTypes = {
+  fetchPrimaryQuery: PropTypes.func.isRequired,
+  fetchStationList: PropTypes.func.isRequired,
+  fetchGifList: PropTypes.func.isRequired,
+  stationList: PropTypes.object,
+  gifList: PropTypes.object,
+  primaryQuery: PropTypes.object,
+}
+
 const mapStateToProps = state => ({
   queryTerm: state.primaryQuery.queryTerm,
-  stationList: state.stationList.items,
-  gifList: state.gifList.items,
+  stationList: state.stationList,
+  gifList: state.gifList,
+  primaryQuery: state.primaryQuery
 })
 export default connect(mapStateToProps, {fetchPrimaryQuery, fetchStationList, fetchGifList })(SearchForm);

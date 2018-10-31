@@ -1,7 +1,7 @@
 import { ACTIVE_GIF } from '../actions/types';
 
 const initialState = {
-  activeGif: {},
+  item: "",
 }
 export default function (state = initialState, action) {
 
@@ -9,10 +9,9 @@ export default function (state = initialState, action) {
     case ACTIVE_GIF:
       return {
         ...state,
-        activeGif: action.payload
+        ...action.payload
       }
     default:
       return state;
-
   }
 }

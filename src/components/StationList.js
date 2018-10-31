@@ -18,11 +18,12 @@ class StationList extends Component {
     
   }
   render() {
+    const stationList = this.props.stationList.items;
     return (
       <ul className="stationList">
         {
-          this.props.stationList ?
-            this.props.stationList.stationList.map((station) => {
+          stationList.length ?
+            stationList.map((station) => {
               return(
                 <li
                 data-video-id={station.id.videoId}
@@ -33,7 +34,6 @@ class StationList extends Component {
                   <h4>{station.snippet.channelTitle}</h4>
                 </li>
               )
-              
             })
           : null
         }
@@ -42,18 +42,16 @@ class StationList extends Component {
   }
 }
 
-// delay prop type set to allow stationList to return with a value when fetchStationList is called
-setTimeout(() => {
-  StationList.propTypes = {
-    // fetchStationList: PropTypes.func.isRequired,
-    fetchActiveStation: PropTypes.func.isRequired,
-    stationList: PropTypes.object.isRequired,
-    activeStation: PropTypes.object.isRequired,
-  }
-}, 50)
+StationList.propTypes = {
+  // fetchStationList: PropTypes.func.isRequired,
+  fetchActiveStation: PropTypes.func.isRequired,
+  stationList: PropTypes.object.isRequired,
+  activeStation: PropTypes.object,
+}
+
 const mapStateToProps = state => ({
-  activeStation: state.activeStation.activeStation,
-  stationList: state.stationList.items,
+  activeStation: state.activeStation,
+  stationList: state.stationList,
 })
 export default connect(mapStateToProps, {fetchStationList, fetchActiveStation})(StationList);
 
