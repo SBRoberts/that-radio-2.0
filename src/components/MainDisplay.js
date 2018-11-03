@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import YouTube from 'react-youtube';
 
 class MainDisplay extends Component {
+  constructor(props){
+    super(props);
+    this.mainDisplay = React.createRef();
+  }
   playPause = (e) => {
     // if the player state is 1 - video is playing, run pause function on key press
     if (e.target.j.playerState === 1) {
@@ -19,7 +23,8 @@ class MainDisplay extends Component {
         this.playPause(e)
       }
     })
-    document.getElementById('mainDisplay').addEventListener('click', () => {
+    
+    this.mainDisplay.current.addEventListener('click', () => {
       this.playPause(e)
     })
     
@@ -41,7 +46,7 @@ class MainDisplay extends Component {
     const {activeStation, activeGif} = this.props
     
     return (
-      <section id="mainDisplay">
+      <section ref={this.mainDisplay}>
       {
         activeStation.item ?
           <YouTube
