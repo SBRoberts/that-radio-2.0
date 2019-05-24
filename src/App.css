@@ -430,44 +430,46 @@ main {
 /* Landscape phone to portrait tablet */
 /* Landscape phones and down */
 @media (max-width: 480px) {
-  #controlPanel {
+  .controlPanelMain {
     transform: translateX(0);
     height: 3.5rem;
     flex-wrap: wrap;
-    transition: height .3s;
+    transition: height 0.5s ease-in;
     position: absolute; }
-    #controlPanel.show {
+    .controlPanelMain.show {
       width: 100%;
       height: 1000px;
       max-height: 100%;
-      transition: height .3s; }
-      #controlPanel.show .controlPanel__body {
+      transition: height 0.5s ease-out; }
+      .controlPanelMain.show .controlPanel__body {
         height: 90%;
         align-self: flex-start;
-        transform: translateY(0); }
-    #controlPanel .controlPanel {
+        transform: translateY(0);
+        transition: transform 0.5s ease-out; }
+    .controlPanelMain .controlPanel {
       align-items: flex-start; }
-      #controlPanel .controlPanel__body {
+      .controlPanelMain .controlPanel__body {
         width: 100%;
         align-self: flex-start;
         transform: translateY(-140%);
-        order: 2; }
-      #controlPanel .controlPanel__controls {
+        order: 2;
+        transition: transform 0.5s ease-in; }
+      .controlPanelMain .controlPanel__controls {
         width: 100vw;
         height: 3.5rem;
         flex-direction: row;
         align-self: flex-start;
         align-items: center;
         order: 1; }
-        #controlPanel .controlPanel__controls--item:nth-of-type(1) {
+        .controlPanelMain .controlPanel__controls--item:nth-of-type(1) {
           order: 1; }
-        #controlPanel .controlPanel__controls--item:nth-of-type(2) {
+        .controlPanelMain .controlPanel__controls--item:nth-of-type(2) {
           order: 3; }
-        #controlPanel .controlPanel__controls--item:nth-of-type(3) {
+        .controlPanelMain .controlPanel__controls--item:nth-of-type(3) {
           order: 2; }
-        #controlPanel .controlPanel__controls--item:nth-of-type(4) {
+        .controlPanelMain .controlPanel__controls--item:nth-of-type(4) {
           order: 4; }
-        #controlPanel .controlPanel__controls--item:nth-of-type(5) {
+        .controlPanelMain .controlPanel__controls--item:nth-of-type(5) {
           order: 5; }
   .hamburgerInput:checked + .hamburger {
     margin: 0; }
@@ -482,12 +484,13 @@ main {
     .gifPanel .show {
       transform: translate(0); }
   .stationList__station {
-    padding: 1rem .5rem; }
+    padding: 1rem 0.5rem; }
   .activeStation {
     top: 85%; }
-  .searchForm input, .searchForm button {
+  .searchForm input,
+  .searchForm button {
     padding: 1rem;
-    font-size: 1.5rem; }
+    font-size: 1.2rem; }
   .searchForm input {
     width: 90%; }
   .searchForm label {
