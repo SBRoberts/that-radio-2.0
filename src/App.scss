@@ -1,24 +1,24 @@
-@import './partials/setup';
+@import "./partials/setup";
 
-$highlight: #063BD4;
-$arrow: url('./assets/pointer-arrow.svg'), auto;
-$hand: url('./assets/pointer-hand.svg'), auto;
-html{
-  font-family: 'Roboto', sans-serif;
+$highlight: #063bd4;
+$arrow: url("./assets/pointer-arrow.svg"), auto;
+$hand: url("./assets/pointer-hand.svg"), auto;
+html {
+  font-family: "Roboto", sans-serif;
   font-size: calc(16px + (28 - 16) * ((100vw - 500px) / (1600 - 500)));
   cursor: $arrow;
 }
-button{
+button {
   cursor: $hand;
 }
-ul{
+ul {
   list-style: none;
   padding: 0;
 }
-.hiddenInput{
+.hiddenInput {
   display: none;
 }
-.App{
+.App {
   position: relative;
   display: flex;
   height: 100vh;
@@ -29,7 +29,7 @@ ul{
   // z-index: -1;
 }
 
-.landing{
+.landing {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
@@ -39,29 +39,37 @@ ul{
   height: 100%;
   right: 0;
   padding-right: 10%;
-  img{
+  img {
     max-width: 10rem;
   }
-  h1, h2{
+  h1,
+  h2 {
     color: white;
     text-transform: uppercase;
     text-align: right;
     width: 100%;
     margin: 2rem 0 0;
   }
-  h1{
+  h1 {
     font-size: 2.5rem;
   }
-  h2{
+  h2 {
     font-size: 1.2rem;
   }
 }
-main{
+main {
   display: flex;
   width: 100%;
 }
+.mainDisplay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
-.gifOverlay{
+.gifOverlay {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -74,20 +82,20 @@ main{
   z-index: 100;
 }
 
-.gifPanel{
+.gifPanel {
   z-index: 800;
   transform: translateX(-50rem);
-  transition: transform .5s ease-in;
-  &.show{
+  transition: transform 0.5s ease-in;
+  &.show {
     transform: translateX(0%);
-    transition: transform .5s ease-out;
+    transition: transform 0.5s ease-out;
   }
 }
 
-.gifList{
+.gifList {
   width: 100%;
   align-self: flex-end;
-  &__container{
+  &__container {
     display: flex;
     flex-wrap: wrap;
     height: 50vh;
@@ -96,13 +104,13 @@ main{
     align-items: center;
     // z-index: 999;
   }
-  &__item{
+  &__item {
     // width: auto;
     // display: inline-block;
     width: 33%;
     text-align: center;
     cursor: $hand;
-    video{
+    video {
       // width: 33%;
       width: 100%;
       // height: 100%;
@@ -110,33 +118,33 @@ main{
   }
 }
 
-.controlPanelMain{
+.controlPanelMain {
   display: flex;
   z-index: 999;
   transform: translateX(-13rem);
-  transition: transform .3s ease-in;
+  transition: transform 0.3s ease-in;
   background: white;
-  ul{
+  ul {
     margin: 0;
   }
-  &.show{
+  &.show {
     transform: translateX(0%);
-    transition: transform .3s ease-out;
+    transition: transform 0.3s ease-out;
   }
-  .controlPanel{
+  .controlPanel {
     // width: 100%;
     display: flex;
     flex-wrap: wrap;
-    &__body{
+    &__body {
       width: 13rem;
-      padding: 1rem .5rem;
+      padding: 1rem 0.5rem;
       display: flex;
       align-items: flex-start;
       justify-content: center;
       overflow-y: scroll;
-      transition: width .3s;
+      transition: width 0.3s;
     }
-    &__controls{
+    &__controls {
       // width: 25%;
       height: 100%;
       width: 3.5rem;
@@ -144,27 +152,27 @@ main{
       flex-direction: column;
       justify-content: space-around;
       align-self: center;
-      padding: 0 .5rem;
-      transition: width .3s;
-      ul{
+      padding: 0 0.5rem;
+      transition: width 0.3s;
+      ul {
         height: 100%;
       }
-      &--item{
+      &--item {
         display: flex;
         justify-content: center;
         font-size: 1.2rem;
-        transition: transform .2s;
+        transition: transform 0.2s;
         cursor: $hand;
-        svg{
+        svg {
           cursor: $hand;
         }
-        path{
+        path {
           fill: $highlight;
         }
-        .hamburger .bar{
+        .hamburger .bar {
           background-color: $highlight;
         }
-        &:not(.hamburgerContainer):hover{
+        &:not(.hamburgerContainer):hover {
           transform: scale(1.2);
         }
       }
@@ -172,53 +180,56 @@ main{
   }
 }
 
-.searchForm{
+.searchForm {
   position: relative;
   align-self: flex-start;
   width: 100%;
   margin-top: 2rem;
   color: $highlight;
-  label{
+  label {
     position: absolute;
     top: 50%;
     left: 1rem;
     transform: translateY(-50%);
-    transition: top .3s, transform .3s;
+    transition: top 0.3s, transform 0.3s;
     z-index: 50;
     font-size: 0.75rem;
-    h3{
+    h3 {
       margin: 0;
     }
-    &.float, &:hover{
+    &.float,
+    &:hover {
       top: -75%;
-      transform: translateY(0)
+      transform: translateY(0);
     }
   }
-  input:focus, input:hover{
-    +label{
+  input:focus,
+  input:hover {
+    + label {
       top: -75%;
-      transform: translateY(0)
+      transform: translateY(0);
     }
   }
 
-  input, button{
+  input,
+  button {
     width: 80%;
     border-radius: 2rem;
     border: 2px solid $highlight;
     color: $highlight;
     outline: none;
     // height: 2rem;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     z-index: 100;
     font-size: 1rem;
     cursor: $hand;
   }
-  input{
+  input {
     background-color: transparent;
     // prevent ios safari default input inner shadow
     -webkit-appearance: none;
   }
-  button{
+  button {
     position: absolute;
     width: initial;
     // font-size: 1rem;
@@ -228,54 +239,54 @@ main{
     background: $highlight;
     text-transform: lowercase;
     font-weight: 700;
-    svg{
+    svg {
       transform: rotate(0) scale(1);
-      transition: transform .2s;
+      transition: transform 0.2s;
     }
-    &:hover{
-      svg{
+    &:hover {
+      svg {
         transform: rotate(45deg);
       }
     }
-    &:active{
-      svg{
+    &:active {
+      svg {
         transform: rotate(45deg) scale(1.25);
       }
     }
   }
 }
 
-.stationList{
+.stationList {
   width: 100%;
   margin: 0;
   align-self: flex-start;
-  &__station{
-    margin: .5rem 0;
+  &__station {
+    margin: 0.5rem 0;
     border-radius: 2rem;
-    padding: .5rem;
+    padding: 0.5rem;
     background: $highlight;
     cursor: $hand;
     border: 3px solid transparent;
-    transition: border .3s, background .3s;
-    h4{
+    transition: border 0.3s, background 0.3s;
+    h4 {
       color: white;
       // background: rgba(255, 255, 255, .7);
       margin: 0;
       border-radius: 2rem;
       font-size: 1rem;
-      padding: .4rem .5rem;
-      transition: color .4s;
+      padding: 0.4rem 0.5rem;
+      transition: color 0.4s;
     }
-    &:hover{
+    &:hover {
       background: white;
       border: 3px solid $highlight;
-      h4{
+      h4 {
         color: $highlight;
       }
     }
   }
 }
-.activeStation{
+.activeStation {
   position: absolute;
   right: 0;
   top: 1.5rem;
@@ -287,89 +298,89 @@ main{
   font-size: 1rem;
   color: $highlight;
 }
-.toggleShuffle{
+.toggleShuffle {
   width: 100%;
   background-color: transparent;
   outline: none;
   border: none;
-  svg{
-    transition: transform .2s;
+  svg {
+    transition: transform 0.2s;
   }
-  &:active svg{
+  &:active svg {
     transform: rotate(180deg);
   }
 }
-.hamburger{
+.hamburger {
   height: 1.3rem;
   width: 1.3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 0;
-  transition: margin .2s;
+  transition: margin 0.2s;
   overflow: hidden;
   cursor: $hand;
-  .bar{
+  .bar {
     width: 100%;
     margin: 0;
     // height: .1rem;
-    padding: .1rem .2rem;
+    padding: 0.1rem 0.2rem;
     // min-width: 100%;
     border-radius: 2rem;
-    transition: transform .3s;
-    &:first-of-type{
+    transition: transform 0.3s;
+    &:first-of-type {
       transform: rotate(0deg);
       transform-origin: left;
     }
-    &:nth-of-type(2){
+    &:nth-of-type(2) {
       transform: scale(1);
       transform-origin: center left;
     }
-    &:last-of-type{
+    &:last-of-type {
       transform: rotate(0deg);
       transform-origin: left;
     }
   }
-  &:hover{
-    .bar{
-      &:first-of-type{
+  &:hover {
+    .bar {
+      &:first-of-type {
         transform: translateX(-50%);
       }
-      &:nth-of-type(2){
+      &:nth-of-type(2) {
         transform: translateX(-25%);
       }
-      &:last-of-type{
+      &:last-of-type {
         transform: translateX(0);
       }
     }
   }
 }
 
-.hamburgerInput:checked{
-  +.hamburger{
+.hamburgerInput:checked {
+  + .hamburger {
     overflow: visible;
-    margin-left: .5rem;
-    .bar{
-      &:first-of-type{
+    margin-left: 0.5rem;
+    .bar {
+      &:first-of-type {
         transform: rotate(43deg);
       }
-      &:nth-of-type(2){
+      &:nth-of-type(2) {
         transform: scale(0);
       }
-      &:last-of-type{
+      &:last-of-type {
         transform: rotate(-43deg);
       }
     }
-    &:hover{
+    &:hover {
       overflow: hidden;
-      .bar{
-        &:first-of-type{
+      .bar {
+        &:first-of-type {
           transform: translateX(-50%);
         }
-        &:nth-of-type(2){
+        &:nth-of-type(2) {
           transform: translateX(-25%);
         }
-        &:last-of-type{
+        &:last-of-type {
           transform: translateX(0);
         }
       }
@@ -377,4 +388,4 @@ main{
   }
 }
 
-@import './partials/mediaQueries'
+@import "./partials/mediaQueries";
