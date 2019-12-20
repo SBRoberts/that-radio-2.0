@@ -214,22 +214,28 @@ main {
 
 .gifPanel {
   z-index: 800;
-  transform: translateX(-50rem);
+  position: absolute;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  transform: translateX(-100%);
   transition: transform 0.5s ease-in; }
   .gifPanel.show {
     transform: translateX(0%);
     transition: transform 0.5s ease-out; }
 
 .gifList {
-  width: 100%;
   align-self: flex-end; }
   .gifList__container {
+    width: calc(100% - (40% * 0.17));
     display: flex;
     flex-wrap: wrap;
     height: 50vh;
     overflow-y: scroll;
     align-self: flex-end;
-    align-items: center; }
+    align-items: center;
+    transition: width 0.3s ease-in; }
   .gifList__item {
     width: 33%;
     text-align: center;
@@ -238,9 +244,10 @@ main {
       width: 100%; }
 
 .controlPanelMain {
+  width: 40%;
   display: flex;
   z-index: 999;
-  transform: translateX(-13rem);
+  transform: translateX(calc(-100% + 17%));
   transition: transform 0.3s ease-in;
   background: white; }
   .controlPanelMain ul {
@@ -248,11 +255,14 @@ main {
   .controlPanelMain.show {
     transform: translateX(0%);
     transition: transform 0.3s ease-out; }
+    .controlPanelMain.show + main .gifPanel .gifList__container {
+      transition: width 0.3s ease-out;
+      width: calc(100% - 30%); }
   .controlPanelMain .controlPanel {
     display: flex;
     flex-wrap: wrap; }
     .controlPanelMain .controlPanel__body {
-      width: 13rem;
+      width: 83%;
       padding: 1rem 0.5rem;
       display: flex;
       align-items: flex-start;
@@ -261,7 +271,7 @@ main {
       transition: width 0.3s; }
     .controlPanelMain .controlPanel__controls {
       height: 100%;
-      width: 3.5rem;
+      width: 17%;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -390,8 +400,9 @@ main {
   height: 1.3rem;
   width: 1.3rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   padding: 0;
   transition: margin 0.2s;
   overflow: hidden;
@@ -399,18 +410,16 @@ main {
   .hamburger .bar {
     width: 100%;
     margin: 0;
-    padding: 0.1rem 0.2rem;
+    height: 5px;
     border-radius: 2rem;
-    transition: transform 0.3s; }
+    transition: transform 0.3s;
+    transform-origin: center left; }
     .hamburger .bar:first-of-type {
-      transform: rotate(0deg);
-      transform-origin: left; }
+      transform: rotate(0deg); }
     .hamburger .bar:nth-of-type(2) {
-      transform: scale(1);
-      transform-origin: center left; }
+      transform: scale(1); }
     .hamburger .bar:last-of-type {
-      transform: rotate(0deg);
-      transform-origin: left; }
+      transform: rotate(0deg); }
   .hamburger:hover .bar:first-of-type {
     transform: translateX(-50%); }
   .hamburger:hover .bar:nth-of-type(2) {
@@ -422,17 +431,17 @@ main {
   overflow: visible;
   margin-left: 0.5rem; }
   .hamburgerInput:checked + .hamburger .bar:first-of-type {
-    transform: rotate(43deg); }
+    transform: rotate(45deg); }
   .hamburgerInput:checked + .hamburger .bar:nth-of-type(2) {
-    transform: scale(0); }
+    transform: scale(0) translateX(0%); }
   .hamburgerInput:checked + .hamburger .bar:last-of-type {
-    transform: rotate(-43deg); }
+    transform: rotate(-45deg); }
   .hamburgerInput:checked + .hamburger:hover {
     overflow: hidden; }
     .hamburgerInput:checked + .hamburger:hover .bar:first-of-type {
       transform: translateX(-50%); }
     .hamburgerInput:checked + .hamburger:hover .bar:nth-of-type(2) {
-      transform: translateX(-25%); }
+      transform: translateX(-25%) scale(1); }
     .hamburgerInput:checked + .hamburger:hover .bar:last-of-type {
       transform: translateX(0); }
 

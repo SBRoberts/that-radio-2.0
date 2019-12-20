@@ -3,6 +3,10 @@
 $highlight: #063bd4;
 $arrow: url("./assets/pointer-arrow.svg"), auto;
 $hand: url("./assets/pointer-hand.svg"), auto;
+$controlPanelWidth: 17%;
+$controlPanelBodyWidth: 83%;
+$controlPanelTotalWidth: 40%;
+
 html {
   font-family: "Roboto", sans-serif;
   font-size: calc(16px + (28 - 16) * ((100vw - 500px) / (1600 - 500)));
@@ -84,7 +88,13 @@ main {
 
 .gifPanel {
   z-index: 800;
-  transform: translateX(-50rem);
+  position: absolute;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  // left: 0;
+  transform: translateX(-100%);
   transition: transform 0.5s ease-in;
   &.show {
     transform: translateX(0%);
@@ -93,16 +103,16 @@ main {
 }
 
 .gifList {
-  width: 100%;
   align-self: flex-end;
   &__container {
+    width: calc(100% - (40% * 0.17));
     display: flex;
     flex-wrap: wrap;
     height: 50vh;
     overflow-y: scroll;
     align-self: flex-end;
     align-items: center;
-    // z-index: 999;
+    transition: width 0.3s ease-in;
   }
   &__item {
     // width: auto;
@@ -119,9 +129,10 @@ main {
 }
 
 .controlPanelMain {
+  width: $controlPanelTotalWidth;
   display: flex;
   z-index: 999;
-  transform: translateX(-13rem);
+  transform: translateX(calc(-100% + #{$controlPanelWidth}));
   transition: transform 0.3s ease-in;
   background: white;
   ul {
@@ -130,13 +141,17 @@ main {
   &.show {
     transform: translateX(0%);
     transition: transform 0.3s ease-out;
+    & + main .gifPanel .gifList__container {
+      transition: width 0.3s ease-out;
+      width: calc(100% - 30%);
+    }
   }
   .controlPanel {
     // width: 100%;
     display: flex;
     flex-wrap: wrap;
     &__body {
-      width: 13rem;
+      width: $controlPanelBodyWidth;
       padding: 1rem 0.5rem;
       display: flex;
       align-items: flex-start;
@@ -147,7 +162,7 @@ main {
     &__controls {
       // width: 25%;
       height: 100%;
-      width: 3.5rem;
+      width: $controlPanelWidth;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -314,8 +329,9 @@ main {
   height: 1.3rem;
   width: 1.3rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   padding: 0;
   transition: margin 0.2s;
   overflow: hidden;
@@ -323,22 +339,18 @@ main {
   .bar {
     width: 100%;
     margin: 0;
-    // height: .1rem;
-    padding: 0.1rem 0.2rem;
-    // min-width: 100%;
+    height: 5px;
     border-radius: 2rem;
     transition: transform 0.3s;
+    transform-origin: center left;
     &:first-of-type {
       transform: rotate(0deg);
-      transform-origin: left;
     }
     &:nth-of-type(2) {
       transform: scale(1);
-      transform-origin: center left;
     }
     &:last-of-type {
       transform: rotate(0deg);
-      transform-origin: left;
     }
   }
   &:hover {
@@ -362,13 +374,13 @@ main {
     margin-left: 0.5rem;
     .bar {
       &:first-of-type {
-        transform: rotate(43deg);
+        transform: rotate(45deg);
       }
       &:nth-of-type(2) {
-        transform: scale(0);
+        transform: scale(0) translateX(0%);
       }
       &:last-of-type {
-        transform: rotate(-43deg);
+        transform: rotate(-45deg);
       }
     }
     &:hover {
@@ -378,7 +390,7 @@ main {
           transform: translateX(-50%);
         }
         &:nth-of-type(2) {
-          transform: translateX(-25%);
+          transform: translateX(-25%) scale(1);
         }
         &:last-of-type {
           transform: translateX(0);
