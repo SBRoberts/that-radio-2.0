@@ -245,6 +245,7 @@ main {
 
 .controlPanelMain {
   width: 40%;
+  min-width: 250px;
   display: flex;
   z-index: 999;
   transform: translateX(calc(-100% + 17%));
@@ -283,7 +284,8 @@ main {
       .controlPanelMain .controlPanel__controls--item {
         display: flex;
         justify-content: center;
-        font-size: 1.2rem;
+        padding: 0;
+        width: 100%;
         transition: transform 0.2s;
         cursor: url("./assets/pointer-hand.svg"), auto; }
         .controlPanelMain .controlPanel__controls--item svg {
@@ -397,53 +399,81 @@ main {
     transform: rotate(180deg); }
 
 .hamburger {
-  height: 1.3rem;
-  width: 1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  height: 24px;
+  width: 24px;
   padding: 0;
-  transition: margin 0.2s;
   overflow: hidden;
-  cursor: url("./assets/pointer-hand.svg"), auto; }
+  cursor: url("./assets/pointer-hand.svg"), auto;
+  position: relative;
+  overflow: visible; }
   .hamburger .bar {
+    transform: scale(1, 1) rotate(0deg) translate(0, 0);
     width: 100%;
-    margin: 0;
-    height: 5px;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    transform: scaleX(1) translate(0, 0);
     border-radius: 2rem;
-    transition: transform 0.3s;
-    transform-origin: center left; }
+    transform-origin: center left;
+    transition: transform 0.3s, top 0.3s, bottom 0.3s, left 0.3s; }
     .hamburger .bar:first-of-type {
-      transform: rotate(0deg); }
+      top: 0; }
     .hamburger .bar:nth-of-type(2) {
-      transform: scale(1); }
+      top: 50%;
+      transform: scale(1, 1) rotate(0deg) translate(0, -50%); }
     .hamburger .bar:last-of-type {
-      transform: rotate(0deg); }
-  .hamburger:hover .bar:first-of-type {
-    transform: translateX(-50%); }
-  .hamburger:hover .bar:nth-of-type(2) {
-    transform: translateX(-25%); }
-  .hamburger:hover .bar:last-of-type {
-    transform: translateX(0); }
+      bottom: 0; }
+  .hamburger:hover .bar {
+    transform-origin: center left;
+    width: 100%; }
+    .hamburger:hover .bar:first-of-type {
+      transform: scale(0.33, 1) rotate(0deg) translate(0, 0);
+      top: 0%; }
+    .hamburger:hover .bar:nth-of-type(2) {
+      transform: scale(0.66, 1) rotate(0deg) translate(0, -50%);
+      top: 50%; }
+    .hamburger:hover .bar:last-of-type {
+      bottom: 0%;
+      transform: scale(1, 1) rotate(0deg) translate(0, 0); }
 
 .hamburgerInput:checked + .hamburger {
-  overflow: visible;
-  margin-left: 0.5rem; }
-  .hamburgerInput:checked + .hamburger .bar:first-of-type {
-    transform: rotate(45deg); }
-  .hamburgerInput:checked + .hamburger .bar:nth-of-type(2) {
-    transform: scale(0) translateX(0%); }
-  .hamburgerInput:checked + .hamburger .bar:last-of-type {
-    transform: rotate(-45deg); }
-  .hamburgerInput:checked + .hamburger:hover {
-    overflow: hidden; }
+  transform-origin: center; }
+  .hamburgerInput:checked + .hamburger .bar {
+    width: 133%; }
+    .hamburgerInput:checked + .hamburger .bar:first-of-type {
+      transform: scale(1, 1) rotate(45deg) translate(0, -50%); }
+    .hamburgerInput:checked + .hamburger .bar:nth-of-type(2) {
+      transform: scale(1, 0) rotate(0deg) translate(0, -50%); }
+    .hamburgerInput:checked + .hamburger .bar:last-of-type {
+      transform: scale(1, 1) rotate(-45deg) translate(0, 50%); }
+  .hamburgerInput:checked + .hamburger:hover .bar {
+    transform-origin: center left;
+    width: 100%; }
     .hamburgerInput:checked + .hamburger:hover .bar:first-of-type {
-      transform: translateX(-50%); }
+      transform: scale(0.33, 1) rotate(0deg) translate(0, 0);
+      top: 0%; }
     .hamburgerInput:checked + .hamburger:hover .bar:nth-of-type(2) {
-      transform: translateX(-25%) scale(1); }
+      transform: scale(0.66, 1) rotate(0deg) translate(0, -50%);
+      top: 50%; }
     .hamburgerInput:checked + .hamburger:hover .bar:last-of-type {
-      transform: translateX(0); }
+      bottom: 0%;
+      transform: scale(1, 1) rotate(0deg) translate(0, 0); }
+
+.playButton {
+  width: 30vmin;
+  width: 30vmin;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  mix-blend-mode: difference;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  cursor: url("./assets/pointer-hand.svg"), auto; }
+  .playButton--hide {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0; }
 
 /* Portrait tablet and small desktops */
 /* Landscape phone to portrait tablet */

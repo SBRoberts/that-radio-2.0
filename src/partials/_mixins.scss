@@ -1,0 +1,88 @@
+@mixin hamburgerTransform(
+  $scaleX: 1,
+  $scaleY: 1,
+  $rotate: 0deg,
+  $translateX: 0,
+  $translateY: 0
+) {
+  transform: scale($scaleX, $scaleY) rotate($rotate)
+    translate($translateX, $translateY);
+}
+
+@mixin hamburgerStatic {
+  position: relative;
+  overflow: visible;
+  .bar {
+    @include hamburgerTransform();
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    transform: scaleX(1) translate(0, 0);
+    border-radius: 2rem;
+    transform-origin: center left;
+    transition: transform 0.3s, top 0.3s, bottom 0.3s, left 0.3s;
+    &:first-of-type {
+      top: 0;
+    }
+    &:nth-of-type(2) {
+      top: 50%;
+      @include hamburgerTransform(1, 1, 0deg, 0, -50%);
+    }
+    &:last-of-type {
+      bottom: 0;
+    }
+  }
+}
+
+@mixin hamburgerHover {
+  .bar {
+    transform-origin: center left;
+    width: 100%;
+    &:first-of-type {
+      @include hamburgerTransform(0.33);
+      top: 0%;
+    }
+    &:nth-of-type(2) {
+      @include hamburgerTransform(0.66, 1, 0deg, 0, -50%);
+      top: 50%;
+    }
+    &:last-of-type {
+      bottom: 0%;
+      @include hamburgerTransform();
+    }
+  }
+}
+
+@mixin hamburgerClose {
+  transform-origin: center;
+  .bar {
+    width: 133%;
+    &:first-of-type {
+      @include hamburgerTransform(1, 1, 45deg, 0, -50%);
+      // top: 50%;
+      // left: 50%;
+    }
+    &:nth-of-type(2) {
+      @include hamburgerTransform(1, 0, 0deg, 0, -50%);
+    }
+    &:last-of-type {
+      @include hamburgerTransform(1, 1, -45deg, 0, 50%);
+      // width: 33px;
+      // bottom: 50%;
+      // left: 50%;
+    }
+  }
+}
+
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+
+  @return $x1;
+}

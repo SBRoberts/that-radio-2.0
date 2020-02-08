@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import YouTube from "react-youtube";
+import playSvg from "../assets/play.svg";
 
 class MainDisplay extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isPlaying: true
+    };
     this.mainDisplay = React.createRef();
     this.musicPlayer = React.createRef();
   }
@@ -20,9 +24,11 @@ class MainDisplay extends Component {
     // if the player state is 1 - video is playing, run pause function on key press
     if (playerState === 1) {
       internalPlayer.pauseVideo();
+      this.setState({ isPlaying: false });
     } else if (playerState === 2) {
       // if player state is 2 - video is paused, run play function on key press
       internalPlayer.playVideo();
+      this.setState({ isPlaying: true });
     } else {
       return;
     }
@@ -45,9 +51,7 @@ class MainDisplay extends Component {
     const pageTitle = document.getElementById("pageTitle");
     let details = {};
     if (stationDetails[0]) {
-      pageTitle.innerHTML = `That Radio - ${
-        stationDetails[0].snippet.channelTitle
-      }`;
+      pageTitle.innerHTML = `That Radio - ${stationDetails[0].snippet.channelTitle}`;
       details = stationDetails[0].snippet;
     }
     return details;
@@ -92,6 +96,16 @@ class MainDisplay extends Component {
             Your browser does not support HTML5 video (╥﹏╥).
           </video>
         ) : null}
+        {activeStation.item && (
+          <img
+            src={playSvg}
+            alt="Play button"
+            role="button"
+            className={`playButton ${
+              this.state.isPlaying ? "playButton--hide" : ""
+            }`}
+          />
+        )}
       </section>
     );
   }
