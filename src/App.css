@@ -481,17 +481,17 @@ main {
 @media (max-width: 480px) {
   .controlPanelMain {
     transform: translateX(0);
-    height: 3.5rem;
+    width: 100%;
+    height: 50px;
     flex-wrap: wrap;
     transition: height 0.5s ease-in;
     position: absolute; }
     .controlPanelMain.show {
       width: 100%;
-      height: 1000px;
-      max-height: 100%;
+      height: 100%;
       transition: height 0.5s ease-out; }
       .controlPanelMain.show .controlPanel__body {
-        height: 90%;
+        height: 100%;
         align-self: flex-start;
         transform: translateY(0);
         transition: transform 0.5s ease-out; }
@@ -504,22 +504,25 @@ main {
         order: 2;
         transition: transform 0.5s ease-in; }
       .controlPanelMain .controlPanel__controls {
-        width: 100vw;
-        height: 3.5rem;
+        width: 100%;
+        height: 35px;
+        display: flex;
         flex-direction: row;
-        align-self: flex-start;
-        align-items: center;
+        align-items: flex-start;
+        margin-top: 15px;
         order: 1; }
-        .controlPanelMain .controlPanel__controls--item:nth-of-type(1) {
-          order: 1; }
-        .controlPanelMain .controlPanel__controls--item:nth-of-type(2) {
-          order: 3; }
-        .controlPanelMain .controlPanel__controls--item:nth-of-type(3) {
-          order: 2; }
-        .controlPanelMain .controlPanel__controls--item:nth-of-type(4) {
-          order: 4; }
-        .controlPanelMain .controlPanel__controls--item:nth-of-type(5) {
-          order: 5; }
+        .controlPanelMain .controlPanel__controls--item {
+          width: auto; }
+          .controlPanelMain .controlPanel__controls--item:nth-of-type(1) {
+            order: 1; }
+          .controlPanelMain .controlPanel__controls--item:nth-of-type(2) {
+            order: 3; }
+          .controlPanelMain .controlPanel__controls--item:nth-of-type(3) {
+            order: 2; }
+          .controlPanelMain .controlPanel__controls--item:nth-of-type(4) {
+            order: 4; }
+          .controlPanelMain .controlPanel__controls--item:nth-of-type(5) {
+            order: 5; }
   .hamburgerInput:checked + .hamburger {
     margin: 0; }
   .gifPanel {

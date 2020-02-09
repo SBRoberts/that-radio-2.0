@@ -8,19 +8,19 @@
 @media (max-width: 480px) {
   .controlPanelMain {
     transform: translateX(0);
+    width: 100%;
     // display: block;
-    height: 3.5rem;
+    height: 50px;
     flex-wrap: wrap;
     transition: height 0.5s ease-in;
     position: absolute;
     &.show {
       width: 100%;
-      height: 1000px;
-      max-height: 100%;
+      height: 100%;
       transition: height 0.5s ease-out;
       .controlPanel {
         &__body {
-          height: 90%;
+          height: 100%;
           align-self: flex-start;
           transform: translateY(0);
           transition: transform 0.5s ease-out;
@@ -38,14 +38,16 @@
         transition: transform 0.5s ease-in;
       }
       &__controls {
-        width: 100vw;
-        height: 3.5rem;
+        width: 100%;
+        height: 35px;
+        display: flex;
         flex-direction: row;
-        align-self: flex-start;
-        align-items: center;
+        align-items: flex-start;
+        margin-top: 15px;
         order: 1;
         // reording the controls for mobile
         &--item {
+          width: auto;
           &:nth-of-type(1) {
             order: 1;
           }
